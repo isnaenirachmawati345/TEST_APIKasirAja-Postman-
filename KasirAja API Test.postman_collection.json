@@ -1,0 +1,1404 @@
+{
+	"info": {
+		"_postman_id": "5a010fac-6854-49d5-b8a4-c210cdb6aea6",
+		"name": "KasirAja API Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "20508765"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Registrasi",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n   \"name\": \"Isnaeni\",\r\n   \"email\": \"Isna@ex.com\",\r\n   \"password\": \"123adsfadf@\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/registration"
+					},
+					"response": [
+						{
+							"name": "Success Registrasi",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n{\r\n   \"name\": \"Isnaeni\",\r\n   \"email\": \"Isna@ex.com\",\r\n   \"password\": \"123adsfadf@\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://kasir-api.belajarqa.com/registration"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsData = pm.response.json();\r",
+									"pm.environment.set(\"accessToken\", jsData.data.accessToken);\r",
+									"pm.environment.set(\"refreshToken\", jsData.data.refreshToken);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"Isna@ex.com\",\r\n   \"password\": \"123adsfadf@\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/authentications"
+					},
+					"response": [
+						{
+							"name": "Success Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"email\": \"Isna@ex.com\",\r\n   \"password\": \"123adsfadf@\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://kasir-api.belajarqa.com/authentications"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsData = pm.response.json();\r",
+									"pm.environment.set(\"userID\", jsData.data.userId);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Isnaeni Rachmawati\",\r\n   \"email\": \"Isna@ex.com\",\r\n   \"password\": \"123adsfadf@\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/users"
+					},
+					"response": [
+						{
+							"name": "Success Create User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"Isnaeni Rachmawati\",\r\n   \"email\": \"Isna@ex.com\",\r\n   \"password\": \"123adsfadf@\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://kasir-api.belajarqa.com/users"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"name\": \"update-user\",\r\n\"email\": \"user@example.com\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/users/{{userID}}"
+					},
+					"response": [
+						{
+							"name": "Success Update User",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\"name\": \"update-user\",\r\n\"email\": \"user@example.com\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "https://kasir-api.belajarqa.com/users/"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Detail User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/users/{{userID}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"Isna@ex.com\",\r\n   \"password\": \"123adsfadf@\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/users/{{userID}}"
+					},
+					"response": [
+						{
+							"name": "Success Delete",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{main_url}}/users/"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Unit",
+			"item": [
+				{
+					"name": "Add Unit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var respon = pm.response.json();\r",
+									"pm.environment.set(\"unitID\", respon.data.unitId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"gr\",\r\n   \"description\": \"weight measurement\",\r\n    \"name\": \"kilogram\",\r\n   \"description\": \"kg\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/units"
+					},
+					"response": [
+						{
+							"name": "Success Add Unit",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"gram\",\r\n   \"description\": \"weight measurement\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{main_url}}/units"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get Unit Detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{mainUrl}}/units/{{unitID}}"
+					},
+					"response": [
+						{
+							"name": "Success Get Unit Detail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{main_url}}/units/{{unitID}}"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get Unit List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "html"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/units"
+					},
+					"response": [
+						{
+							"name": "Success Get Unit List",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{main_url}}/units"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Update Unit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"ML\",\r\n   \"description\": \"Milimeter\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/units/{{unitID}}"
+					},
+					"response": [
+						{
+							"name": "Success Update Unit",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"update-meter\",\r\n   \"description\": \"no-meter\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{mainUrl}}/units/{{unitID}}"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Delete Unit",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"gr\",\r\n   \"description\": \"weight measurement\",\r\n   \"name\": \"ML\",\r\n   \"description\": \"Milimeter\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/units/{{unitID}}"
+					},
+					"response": [
+						{
+							"name": "Success Delete Unit",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{mainUrl}}/units/{{unitID}}"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Categories",
+			"item": [
+				{
+					"name": "Add Category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var respon = pm.response.json();\r",
+									"pm.environment.set(\"categoryID\", respon.data.categoryId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Hotdog\",\r\n   \"description\": \"Hotdog makanan dari indofood\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/categories"
+					},
+					"response": [
+						{
+							"name": "Success Add Category",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"Hotdog\",\r\n   \"description\": \"Hotdog makanan dari indofood\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{mainUrl}}/categories"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get Category Detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{mainUrl}}/categories/{{categoryID}}"
+					},
+					"response": [
+						{
+							"name": "Success Get Category Detail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{mainUrl}}/categories/{{categoryID}}"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get Category List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{mainUrl}}/categories"
+					},
+					"response": [
+						{
+							"name": "Success Get Category List",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{mainUrl}}/categories"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Update Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"update-minuman\",\r\n   \"description\": \"no-minuman\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/categories/{{categoryID}}"
+					},
+					"response": [
+						{
+							"name": "Success Update Category",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"update-minuman\",\r\n   \"description\": \"no-minuman\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{mainUrl}}/categories/{{categoryID}}"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Delete Category",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"update-minuman\",\r\n   \"description\": \"no-minuman\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/categories/{{categoryID}}"
+					},
+					"response": [
+						{
+							"name": "Success Delete Category",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{mainUrl}}/categories/{{categoryID}}"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Add Customer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var respon = pm.response.json();\r",
+									"pm.environment.set(\"customerID\", respon.data.customerId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"ISNA\",\r\n   \"phone\": \"081234567890\",\r\n   \"address\": \"Bandoeng\",\r\n   \"description\": \"LEVEL UP\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/customers"
+					},
+					"response": [
+						{
+							"name": "Success Add Customer",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"ISNA\",\r\n   \"phone\": \"081234567890\",\r\n   \"address\": \"Bandoeng\",\r\n   \"description\": \"LEVEL UP\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{mainUrl}}/customers"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get Customer Detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{mainUrl}}/customers/{{customerID}}"
+					},
+					"response": [
+						{
+							"name": "Success Get Customer Detail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{mainUrl}}/customers/{{customerID}}"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get Customer List",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{mainUrl}}/customers"
+					},
+					"response": [
+						{
+							"name": "Success Get Customer List",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{mainUrl}}/customers"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Update Customer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"Budi Doremi\",\r\n   \"phone\": \"08987654321\",\r\n   \"address\": \"Bandung\",\r\n   \"description\": \"Pelanggan VIP\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/customers/{{customerID}}"
+					},
+					"response": [
+						{
+							"name": "Success Update Customer",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"name\": \"Budi Doremi\",\r\n   \"phone\": \"08987654321\",\r\n   \"address\": \"Bandung\",\r\n   \"description\": \"Pelanggan VIP\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{mainUrl}}/customers/{{customerID}}"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Delete Customer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"name\": \"ISNA\",\r\n   \"phone\": \"081234567890\",\r\n   \"address\": \"Bandoeng\",\r\n   \"description\": \"LEVEL UP\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/customers/{{customerID}}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Add Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var respon = pm.response.json();\r",
+									"pm.environment.set(\"productID\", respon.data.productId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"category_id\" : \"811f547e-a24e-4f94-bfe1-b7ed7d11c03f\",\r\n   \"code\": \"A314ASDDFIER3432\",\r\n   \"name\": \"BENG-BENG\",\r\n   \"price\": \"5000\",\r\n   \"cost\": \"4000\",\r\n   \"stock\": \"90\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/products",
+						"description": "PERBAHARUI"
+					},
+					"response": [
+						{
+							"name": "Success Add Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"category_id\" : \"811f547e-a24e-4f94-bfe1-b7ed7d11c03f\",\r\n   \"code\": \"A314ASDDFIER3432\",\r\n   \"name\": \"BENG-BENG\",\r\n   \"price\": \"5000\",\r\n   \"cost\": \"4000\",\r\n   \"stock\": \"90\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{mainUrl}}/products"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get Product Detail",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{mainUrl}}/products/{{productID}}"
+					},
+					"response": [
+						{
+							"name": "Success Get Product Detail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{mainUrl}}/products/{{productID}}"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get Product List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{mainUrl}}/products"
+					},
+					"response": [
+						{
+							"name": "Success Get Product List",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{mainUrl}}/products"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Update Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"category_id\" : \"811f547e-a24e-4f94-bfe1-b7ed7d11c03f\",\r\n   \"code\": \"A314ASDDFIER3432\",\r\n   \"name\": \"taro\",\r\n   \"price\": \"3500\",\r\n   \"cost\": \"3000\",\r\n   \"stock\": \"1\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/products/{{productID}}"
+					},
+					"response": [
+						{
+							"name": "Success Update Product",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"url": "{{mainUrl}}/products/{{productID}}"
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Delete Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"category_id\" : \"811f547e-a24e-4f94-bfe1-b7ed7d11c03f\",\r\n   \"code\": \"A314ASDDFIER3432\",\r\n   \"name\": \"BENG-BENG\",\r\n   \"price\": \"5000\",\r\n   \"cost\": \"4000\",\r\n   \"stock\": \"90\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/products/{{productID}}"
+					},
+					"response": [
+						{
+							"name": "Success Delete Product",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": ""
+							},
+							"_postman_previewlanguage": "Text",
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Transaksi",
+			"item": [
+				{
+					"name": "Add Sales",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var respon = pm.response.json();\r",
+									"pm.environment.set(\"saleId\", respon.data.saleId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"customerId\": \"811f547e-a24e-4f94-bfe1-b7ed7d11c03f\",\r\n   \"date\": \"2023-02-01\",\r\n   \"invoice\": \"INV001\",\r\n   \"amount\": 2000,\r\n   \"discount\": 0,\r\n   \"description\": \"Pembelian pertama\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"681fa14f-8bed-4bee-a4a3-5c15a9e3fc5d\",\r\n           \"quantity\": 1,\r\n           \"price\": 2000\r\n       }\r\n   ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/sales"
+					},
+					"response": [
+						{
+							"name": "Success Add Sales",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"customerId\": \"811f547e-a24e-4f94-bfe1-b7ed7d11c03f\",\r\n   \"date\": \"2023-02-01\",\r\n   \"invoice\": \"INV001\",\r\n   \"amount\": 2000,\r\n   \"discount\": 0,\r\n   \"description\": \"Pembelian pertama\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"681fa14f-8bed-4bee-a4a3-5c15a9e3fc5d\",\r\n           \"quantity\": 1,\r\n           \"price\": 2000\r\n       }\r\n   ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{mainUrl}}/sales"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get List Sales Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{mainUrl}}/purchases?startDate=2023-01-29T17:00:00.000Z&endDate=2023-12-30T17:00:00.000Z&page=1",
+							"host": [
+								"{{mainUrl}}"
+							],
+							"path": [
+								"purchases"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2023-01-29T17:00:00.000Z"
+								},
+								{
+									"key": "endDate",
+									"value": "2023-12-30T17:00:00.000Z"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success Get List Sales Data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{mainUrl}}/purchases?startDate=2023-01-29T17:00:00.000Z&endDate=2023-12-30T17:00:00.000Z&page=1",
+									"host": [
+										"{{mainUrl}}"
+									],
+									"path": [
+										"purchases"
+									],
+									"query": [
+										{
+											"key": "startDate",
+											"value": "2023-01-29T17:00:00.000Z"
+										},
+										{
+											"key": "endDate",
+											"value": "2023-12-30T17:00:00.000Z"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get Sale Order data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{mainUrl}}/sales/{{saleId}}"
+					},
+					"response": [
+						{
+							"name": "Success Get Sale Order data",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": "{{mainUrl}}/sales/{{saleId}}"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Transaction - Add Transaction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var respon = pm.response.json();\r",
+									"pm.environment.set(\"purchaseId\", respon.data.purchaseId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"date\": \"2023-01-28\",\r\n   \"invoice\": \"INV/02/12/2023/001\",\r\n   \"amount\": 14000,\r\n   \"discount\": 0,\r\n   \"description\": \"testing\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"681fa14f-8bed-4bee-a4a3-5c15a9e3fc5d\",\r\n           \"quantity\": 4,\r\n           \"cost\": 1000\r\n       }\r\n   ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/purchases"
+					},
+					"response": [
+						{
+							"name": "Success Transaction - Add Transaction",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"officeId\": \"2f458834-0b21-466f-9f56-d35a8ed6f6ba\",\r\n   \"date\": \"2023-01-28\",\r\n   \"invoice\": \"INV/02/12/2023/001\",\r\n   \"amount\": 14000,\r\n   \"discount\": 0,\r\n   \"description\": \"testing\",\r\n   \"items\" : [\r\n       {\r\n           \"productId\": \"681fa14f-8bed-4bee-a4a3-5c15a9e3fc5d\",\r\n           \"quantity\": 4,\r\n           \"cost\": 1000\r\n       }\r\n   ]\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{mainUrl}}/purchases"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get Transaction Detail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var respon = pm.response.json();\r",
+									"pm.environment.set(\"purchaseId\", respon.data.purchaseId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{mainUrl}}/purchases/{{purchaseId}}"
+					},
+					"response": [
+						{
+							"name": "Success Get Transaction Detail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{mainUrl}}/purchases/{{purchaseId}}"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": {
+			"addTokenTo": "queryParams",
+			"challengeAlgorithm": "S256",
+			"grant_type": "authorization_code",
+			"client_authentication": "header"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
